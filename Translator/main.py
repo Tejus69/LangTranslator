@@ -1,4 +1,5 @@
 from tkinter import *
+import customtkinter
 from tkinter import ttk
 from googletrans import Translator,LANGUAGES 
 
@@ -24,42 +25,74 @@ def data():
 
 
 
+customtkinter.set_appearance_mode("System") 
+customtkinter.set_default_color_theme("blue") 
 
-window = Tk()
+window = customtkinter.CTk()
 # Logic Design
-window.title("Translator")
+window.title("Language Translator")
 window.geometry("500x700")
-window.config(bg="red")
 
-Label1 = Label(window,text="Translator",font=("Time New Roman", 40,"bold"))
-Label1.place(x=100,y=40,height=50,width=300)
 
-frame = Frame(window,bg="green").pack(side=BOTTOM)
+frame = customtkinter.CTkFrame(window,bg_color="blue").pack(side=BOTTOM)
 
-sorce = Label(window,text="Source",font=("Time New Roman", 20,"bold"),bg="red")
-sorce .place(x=0,y=100,height=30,width=300)
+mode = "dark"
 
-sorce_box = Text(frame,font=("Time New Roman", 20,"bold"),wrap=WORD,bg="black",fg="#00ff00",insertbackground="white")
-sorce_box.place(x=10,y=130,height=150,width=480)
+def change_colors(choice):
+	customtkinter.set_default_color_theme(choice)
+
+def change():
+	global mode
+	if mode == "dark":
+		customtkinter.set_appearance_mode("light")
+		mode = "light"
+	
+	else:
+		customtkinter.set_appearance_mode("dark")
+		mode = "dark"
+
+
+
+my_button = customtkinter.CTkButton(frame, text="Change Light/Dark", command=change)
+my_button.pack(pady=20)
+my_button.place(x=200,y=650)
+
+
+Label1 = customtkinter.CTkLabel(master=window,text ="Translator"  ,font=("Segoe Print", 50, "bold"),height=60,width=320,text_color="DodgerBlue2")
+Label1.pack(padx=100, pady=20)
+
+
+
+
+sorce = customtkinter.CTkLabel(window,text="Source",font=("Time New Roman", 20,"bold"),height=30,width=100,text_color="magenta2")
+sorce .pack(padx=30,pady=1)
+sorce .place(x=20,y=100)
+
+sorce_box = customtkinter.CTkTextbox(frame,border_width=2,fg_color="black",font=("Time New Roman", 20,"bold"),text_color="green1",height=150,width=480,wrap=WORD)
+sorce_box.place(x=10,y=130)
 
 lang_list = list(LANGUAGES.values())
 
-combo_source = ttk.Combobox(frame,value=lang_list)
-combo_source.place(x=10,y=300,height=40,width=150)
+combo_source = customtkinter.CTkComboBox(frame,values=lang_list)
+combo_source.place(x=27,y=310)
 combo_source.set("ENGLISH")
 
-Translate_Button = Button(frame,text= "Translate",relief=RAISED,command=data)
-Translate_Button.place(x=170,y=300,height=40,width=150)
+Translate_Button = customtkinter.CTkButton(frame,text= "Translate",hover_color="pink",font=("Time New Roman", 20, "bold"),height=40,width=150,command=data,border_width=3,border_color="green")
+Translate_Button.place(x=185,y=310)
 
-combo_Desti = ttk.Combobox(frame,value=lang_list)
-combo_Desti .place(x=330,y=300,height=40,width=150)
+combo_Desti = customtkinter.CTkComboBox(frame,values=lang_list,border_width=3)
+combo_Desti .place(x=350,y=310)
 combo_Desti .set("HINDI")
 
-Desti_box = Text(frame,font=("Time New Roman", 20,"bold"),wrap=WORD,bg="black",fg="#00ff00",insertbackground="white")
-Desti_box.place(x=10,y=400,height=150,width=480)
+Desti_box =  customtkinter.CTkTextbox(frame,fg_color="black",text_color="green1",font=("Time New Roman", 20,"bold"),border_width=2,height=150,width=480,wrap=WORD)
+Desti_box.place(x=10,y=420)
 
-destination = Label(window,text="Destination",font=("Time New Roman", 20,"bold"),bg="red")
-destination.place(x=60,y=360,height=30,width=300)
+
+destination = customtkinter.CTkLabel(window,text="Destination",font=("Time New Roman", 20,"bold"),height=20,width=30,text_color="magenta2")
+
+destination.place(x=25,y=380)
+
+
 
 
 window.mainloop()
