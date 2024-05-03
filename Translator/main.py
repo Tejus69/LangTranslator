@@ -34,7 +34,7 @@ window.title("Language Translator")
 window.geometry("500x700")
 
 
-frame = customtkinter.CTkFrame(window,bg_color="blue").pack(side=BOTTOM)
+frame = customtkinter.CTkFrame(window).pack(side=BOTTOM)
 
 mode = "dark"
 
@@ -55,7 +55,7 @@ def change():
 
 my_button = customtkinter.CTkButton(frame, text="Change Light/Dark", command=change)
 my_button.pack(pady=20)
-my_button.place(x=200,y=650)
+my_button.place(x=180,y=650)
 
 
 Label1 = customtkinter.CTkLabel(master=window,text ="Translator"  ,font=("Segoe Print", 50, "bold"),height=60,width=320,text_color="DodgerBlue2")
@@ -80,7 +80,7 @@ combo_source.set("ENGLISH")
 Translate_Button = customtkinter.CTkButton(frame,text= "Translate",hover_color="pink",font=("Time New Roman", 20, "bold"),height=40,width=150,command=data,border_width=3,border_color="green")
 Translate_Button.place(x=185,y=310)
 
-combo_Desti = customtkinter.CTkComboBox(frame,values=lang_list,border_width=3)
+combo_Desti = customtkinter.CTkComboBox(frame,values=lang_list)
 combo_Desti .place(x=350,y=310)
 combo_Desti .set("HINDI")
 
